@@ -1,0 +1,7 @@
+h1, h2{color:navy;}
+p{font-size:13px;}
+div {border:1px solid #ccc}.isredbox{background-color:red;}
+:host {
+  font-family: Verdana;
+  color: darkred;
+}
