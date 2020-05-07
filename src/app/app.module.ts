@@ -3,21 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ChildComponent } from './child.component';
 import {FormsModule} from '@angular/forms';
-import {ChildComponent2} from './child2.component';
-import {ChildComponent3} from './child.component3';
+import {BoldDirective} from './bold.directive';
+import { WhileDirective} from './while.directive';
+import {DataComponent} from './data.component';
+import {DataService} from './data.service';
+import {LogService} from './log.service';
+// import {LogService} from './log.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent, ChildComponent, ChildComponent2, ChildComponent3
-  ],
+   DataComponent, AppComponent, WhileDirective, BoldDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+
   ],
-  providers: [],
+  providers: [DataService, LogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

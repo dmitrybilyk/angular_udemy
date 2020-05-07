@@ -55,3 +55,34 @@
 
 <child3-comp [(userName)]="name"></child3-comp>
 <div>3 Выбранное имя: {{name}}</div>
+-----------------------------------------------
+<child4-comp #counter></child4-comp>
+<button (click)="increment()">+</button>
+<button (click)="decrement()">-</button>
+
+<br>
+-------------------------------
+
+<p #userName>{{name}}</p>
+<p>{{userName.textContent}}</p>
+
+<input type="text" [(ngModel)]="name" />
+
+<br>
+-------------
+
+changes
+<p #nameText>{{name}}</p>
+<p>{{nameText.textContent}}</p>
+<button (click)="change()">Изменить</button>
+
+
+<br>
+------------------
+chuchu
+
+<child4-comp>
+  <h3 #headerContent>Добро пожаловать dfdf {{name}}!</h3>
+</child4-comp>
+
+<data-comp></data-comp>
