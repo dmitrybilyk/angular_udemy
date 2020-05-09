@@ -1,34 +1,15 @@
-// function log(message) {
-//   console.log(message);
-// }
-//
-// var message = 'Hello World';
-//
-// log(message);
-//
-// let count: number;
-// // count = 'a';
-//
-// let a: number;
-//
-// enum Color { RED, GREEN, BLUE};
-//
-// let backgroundColor = Color.RED;
+import {Point} from './point';
 
 let message = 'abc';
-// let endsWithC = (<string> message).endsWith('c');
-// let endsWithC2 = (message as string).endsWith('c');
 
-// let doLog = message2 => console.log(message2);
 
-class Point {
-  x: number;
-  y: number;
-  // draw: () => void;
-  draw() {
-    //
-  }
-}
+
+let point = new Point(1);
+// point.x = 1;
+// point.y = 2;
+let x = point.getX();
+point.setX(10);
+point.draw();
 
 
 

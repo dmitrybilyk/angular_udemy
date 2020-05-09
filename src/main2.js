@@ -1,18 +1,10 @@
-function log(message) {
-    console.log(message);
-}
-var message = 'Hello World';
-log(message);
-var count;
-// count = 'a';
-var a;
-var Color;
-(function (Color) {
-    Color[Color["RED"] = 0] = "RED";
-    Color[Color["GREEN"] = 1] = "GREEN";
-    Color[Color["BLUE"] = 2] = "BLUE";
-})(Color || (Color = {}));
-;
-var backgroundColor = Color.RED;
-
-
+"use strict";
+exports.__esModule = true;
+var point_1 = require("./point");
+var message = 'abc';
+var point = new point_1.Point(1);
+// point.x = 1;
+// point.y = 2;
+var x = point.getX();
+point.setX(10);
+point.draw();
