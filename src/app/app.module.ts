@@ -9,6 +9,7 @@ import { WhileDirective} from './while.directive';
 import {DataComponent} from './data.component';
 import {DataService} from './data.service';
 import {LogService} from './log.service';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule }   from '@angular/forms';
 // import {LogService} from './log.service';
@@ -21,8 +22,8 @@ import { ReactiveFormsModule }   from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [DataService, LogService],
   bootstrap: [AppComponent]

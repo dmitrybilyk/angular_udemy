@@ -2,4 +2,4 @@ import {LikeComponent} from './like.component';
 
 let component = new LikeComponent(10, true);
 component.onClick();
-console.log(`likesCount: ${component.getLikesCount()}, ${component.getIsSelected()}`)
+console.log(`likesCount: ${component.likesCount}, ${component.isSelected}`)
