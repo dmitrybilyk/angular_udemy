@@ -12,20 +12,40 @@ import {LogService} from './log.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ReactiveFormsModule }   from '@angular/forms';
+import {Routes, RouterModule} from '@angular/router';
+import {HomeComponent} from './home.component';
+import {AboutComponent} from './about.component';
+import {NotFoundComponent} from './not-found.component';
+import {ItemComponent} from './item.component';
+import {ItemDetailsComponent} from './item.details.component';
+import {ItemStatComponent} from './item.stat.component';
+import {AboutGuard} from './about.guard';
+import {ExitAboutGuard} from './exit.about.guard';
 // import {LogService} from './log.service';
 
+const appRoutes: Routes =[
+  { path: '', component: HomeComponent},
+  {
+    path: 'about',
+    component: AboutComponent,
+    canActivate: [AboutGuard],
+    canDeactivate: [ExitAboutGuard]
+  }
+];
 
 @NgModule({
   declarations: [
-   DataComponent, AppComponent, WhileDirective, BoldDirective],
+   DataComponent, AppComponent, WhileDirective, BoldDirective, NotFoundComponent, HomeComponent, AboutComponent,
+  ItemComponent, ItemDetailsComponent, ItemStatComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [DataService, LogService],
+  providers: [DataService, LogService, AboutGuard, ExitAboutGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
