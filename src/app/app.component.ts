@@ -1,14 +1,23 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { HttpService} from './http.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'my-app',
-  template: `<div>
-      <h1>Маршрутизация в Angular 9</h1>
-      <nav>
-          <a routerLink="">Главная</a>
-          <a routerLink="/about">О сайте</a>
-      </nav>
-      <router-outlet></router-outlet>
-  </div>`
+  template: `<ul>
+      <li *ngFor="let user of users | async">
+          <p>Имя пользователя: {{user.name}}</p>
+          <p>Возраст пользователя: {{user.age}}</p>
+      </li>
+  </ul>`,
+  providers: [HttpService]
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+
+  users: Observable<Object>;
+  constructor(private httpService: HttpService){}
+  ngOnInit(){
+
+    this.users = this.httpService.getUsers();
+  }
+}

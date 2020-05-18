@@ -21,6 +21,8 @@ import {ItemDetailsComponent} from './item.details.component';
 import {ItemStatComponent} from './item.stat.component';
 import {AboutGuard} from './about.guard';
 import {ExitAboutGuard} from './exit.about.guard';
+import {FormatPipe} from './format.pipe';
+import {JoinPipe} from './join.pipe';
 // import {LogService} from './log.service';
 
 const appRoutes: Routes =[
@@ -36,7 +38,7 @@ const appRoutes: Routes =[
 @NgModule({
   declarations: [
    DataComponent, AppComponent, WhileDirective, BoldDirective, NotFoundComponent, HomeComponent, AboutComponent,
-  ItemComponent, ItemDetailsComponent, ItemStatComponent],
+  ItemComponent, ItemDetailsComponent, ItemStatComponent, FormatPipe, JoinPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
