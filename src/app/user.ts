@@ -1,4 +1,6 @@
 export class User{
-  name: string;
-  age: number;
+  constructor(
+    public id: number,
+    public name: string,
+    public age: number) { }
 }

@@ -23,6 +23,7 @@ import {AboutGuard} from './about.guard';
 import {ExitAboutGuard} from './exit.about.guard';
 import {FormatPipe} from './format.pipe';
 import {JoinPipe} from './join.pipe';
+import {UserService} from './user.service';
 // import {LogService} from './log.service';
 
 const appRoutes: Routes =[
@@ -47,7 +48,7 @@ const appRoutes: Routes =[
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DataService, LogService, AboutGuard, ExitAboutGuard],
+  providers: [DataService, LogService, AboutGuard, ExitAboutGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

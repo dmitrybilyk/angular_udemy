@@ -1,88 +1,54 @@
-<div class="page-header">
-  <h1> Список покупок </h1>
-</div>
-<div class="panel" [class.isredbox]="isRed">
-  <div class="form-inline">
-    <div class="form-group">
-      <div class="col-md-8">
-        <input class="form-control" [(ngModel)]="text" placeholder = "Название" />
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-6">
-        <input type="number" class="form-control" [(ngModel)]="price" placeholder="Цена" />
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-6">
-        <input type="number" class="form-control" [value]="age" placeholder="Цена" />
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-offset-2 col-md-8">
-        <button class="btn btn-default" (click)="addItem(text, price)">Добавить{{age}}</button>
-      </div>
-    </div>
-  </div>
-  <table class="table table-striped">
-    <thead>
-    <tr><td [attr.colspan]="colspan">CheckCheckCheckCheckCheckCheckCheckCheckCheckCheck</td></tr>
-    <tr>
-      <th>Предмет</th>
-      <th>Цена({{price}})</th>
-      <th>Куплено</th>
-      <th>Возраст ({{age}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of items">
-      <td>{{item.purchase}}</td>
-      <td>{{item.price}}</td>
-      <td><input type="checkbox" [(ngModel)]="item.done" /></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<input type="checkbox" [(ngModel)]="isRed" />
-
-<child-comp></child-comp>
-<p>Привет {{name}}</p>
-
-<input type="number" [(ngModel)]="age" />
-
-<h2>Количество кликов: {{clicks}}</h2>
-<child2-comp (onChanged)="onChanged($event)"></child2-comp>
-
-<child3-comp [(userName)]="name"></child3-comp>
-<div>3 Выбранное имя: {{name}}</div>
------------------------------------------------
-<child4-comp #counter></child4-comp>
-<button (click)="increment()">+</button>
-<button (click)="decrement()">-</button>
-
-<br>
--------------------------------
-
-<p #userName>{{name}}</p>
-<p>{{userName.textContent}}</p>
-
-<input type="text" [(ngModel)]="name" />
-
-<br>
--------------
-
-changes
-<p #nameText>{{name}}</p>
-<p>{{nameText.textContent}}</p>
-<button (click)="change()">Изменить</button>
+<h1>Список пользователей</h1>
+<input type="button" value="Добавить" class="btn btn-default" (click)="addUser()" />
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <td>Id</td>
+    <td>Имя</td>
+    <td>Возраст</td>
+    <td></td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users">
+    <ng-template [ngTemplateOutlet]="loadTemplate(user)"
+                 [ngTemplateOutletContext]="{ $implicit: user}">
+    </ng-template>
+  </tr>
+  </tbody>
+</table>
+<div>{{statusMessage}}</div>
 
 
-<br>
-------------------
-chuchu
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-user>
+  <td>{{user.id}}</td>
+  <td>{{user.name}}</td>
+  <td>{{user.age}}</td>
+  <td>
+    <input type="button" value="Изменить" class="btn btn-default" (click)="editUser(user)" />
+  </td>
+  <td>
+    <input type="button" value="Удалить" (click)="deleteUser(user)" class="btn btn-danger" />
+  </td>
+</ng-template>
 
-<child4-comp>
-  <h3 #headerContent>Добро пожаловать dfdf {{name}}!</h3>
-</child4-comp>
-
-<data-comp></data-comp>
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+  <td>
+    <input type="number" [(ngModel)]="editedUser.id" readonly disabled class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="editedUser.name" class="form-control" />
+  </td>
+  <td>
+    <input type="number" [(ngModel)]="editedUser.age" class="form-control" />
+  </td>
+  <td>
+    <input type="button" value="Сохранить" (click)="saveUser()" class="btn btn-success" />
+  </td>
+  <td>
+    <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
+  </td>
+</ng-template>
