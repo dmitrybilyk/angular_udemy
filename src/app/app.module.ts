@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import {BoldDirective} from './bold.directive';
 import { WhileDirective} from './while.directive';
-import {DataComponent} from './data.component';
+// import {DataComponent} from './data.component';
 import {DataService} from './data.service';
 import {LogService} from './log.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,7 +38,7 @@ const appRoutes: Routes =[
 
 @NgModule({
   declarations: [
-   DataComponent, AppComponent, WhileDirective, BoldDirective, NotFoundComponent, HomeComponent, AboutComponent,
+   AppComponent, WhileDirective, BoldDirective, NotFoundComponent, HomeComponent, AboutComponent,
   ItemComponent, ItemDetailsComponent, ItemStatComponent, FormatPipe, JoinPipe],
   imports: [
     BrowserModule,

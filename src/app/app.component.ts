@@ -1,90 +1,43 @@
-import {TemplateRef, ViewChild} from '@angular/core';
-import {Component, OnInit} from '@angular/core';
-import {User} from './user';
-import {UserService} from './user.service';
-import {Observable} from 'rxjs';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  templateUrl: './app.component.html',
-  providers: [UserService]
+  templateUrl: './app.component.html'
 })
-export class AppComponent implements OnInit {
-  //типы шаблонов
-  @ViewChild('readOnlyTemplate', {static: false}) readOnlyTemplate: TemplateRef<any>;
-  @ViewChild('editTemplate', {static: false}) editTemplate: TemplateRef<any>;
+export class AppComponent {
+  constructor() {
+    let tom : User = new User("Том", 29);
+    console.log("Имя: ", tom.name, " возраст: ", tom.age);
 
-  editedUser: User;
-  users: Array<User>;
-  isNewRecord: boolean;
-  statusMessage: string;
-
-  constructor(private serv: UserService) {
-    this.users = new Array<User>();
+    let person = {name:"Tom", age:23};
+    console.log(person.name);
+// альтернативный вариант получения свойства
+    console.log(person["name"]);
+    this.printSomething();
   }
 
-  ngOnInit() {
-    this.loadUsers();
+   printSomething(){
+     // определение кортежа - кортеж состоит из двух элементов - строки и числа
+     let userInfo: [string, number, number];
+// инициализация кортежа
+     userInfo = ["Tom", 28, 77];
+// Неправильная инициализация - переданные значения не соответствуют типам по позиции
+//userInfo = [28, "Tom"]; // Ошибка
+
+// использование кортежа
+     console.log(userInfo[1]); // 28
+     userInfo[1] = 37;
   }
 
-  //загрузка пользователей
-  private loadUsers() {
-    this.serv.getUsers().subscribe((data: User[]) => {
-      this.users = data;
-    });
-  }
-  // добавление пользователя
-  addUser() {
-    this.editedUser = new User(0,"",0);
-    this.users.push(this.editedUser);
-    this.isNewRecord = true;
-  }
+}
 
-  // редактирование пользователя
-  editUser(user: User) {
-    this.editedUser = new User(user.id, user.name, user.age);
-  }
-  // загружаем один из двух шаблонов
-  loadTemplate(user: User) {
-    if (this.editedUser && this.editedUser.id === user.id) {
-      return this.editTemplate;
-    } else {
-      return this.readOnlyTemplate;
-    }
-  }
-  // сохраняем пользователя
-  saveUser() {
-    if (this.isNewRecord) {
-      // добавляем пользователя
-      this.serv.createUser(this.editedUser).subscribe(data => {
-        this.statusMessage = 'Данные успешно добавлены',
-          this.loadUsers();
-      });
-      this.isNewRecord = false;
-      this.editedUser = null;
-    } else {
-      // изменяем пользователя
-      this.serv.updateUser(this.editedUser.id, this.editedUser).subscribe(data => {
-        this.statusMessage = 'Данные успешно обновлены',
-          this.loadUsers();
-      });
-      this.editedUser = null;
-    }
-  }
-  // отмена редактирования
-  cancel() {
-    // если отмена при добавлении, удаляем последнюю запись
-    if (this.isNewRecord) {
-      this.users.pop();
-      this.isNewRecord = false;
-    }
-    this.editedUser = null;
-  }
-  // удаление пользователя
-  deleteUser(user: User) {
-    this.serv.deleteUser(user.id).subscribe(data => {
-      this.statusMessage = 'Данные успешно удалены',
-        this.loadUsers();
-    });
+class User{
+  name : string;
+  age : number;
+  constructor(_name:string, _age: number){
+
+    this.name = _name;
+    this.age = _age;
   }
 }
+
